@@ -11,12 +11,16 @@ set( GLFW_INSTALL OFF CACHE BOOL  "GLFW lib only" )
 
 add_subdirectory( glfw )
 
-set( AGL_src
+set(AGL_src
         main.cpp
         glad.c
         include/Shader/Shader.cpp
         include/stb_image.h
-        Interface/Object.h)
+        Interface/IObject.h
+        Objects/3D/Cube.h
+        Scene/MainScene.h
+        Objects/3D/Cube.cpp
+        Scene/MainScene.cpp)
 
 add_executable( AGLex WIN32 ${AGL_src} )
 target_link_libraries( AGLex ${OPENGL_LIBRARIES} glfw )

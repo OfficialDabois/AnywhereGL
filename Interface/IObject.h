@@ -1,9 +1,9 @@
-#ifndef AGL_OBJECT_H
-#define AGL_OBJECT_H
+#ifndef AGL_IOBJECT_H
+#define AGL_IOBJECT_H
 
 #include <glm/gtc/matrix_transform.hpp>
 
-class Object {
+class IObject {
     virtual void SetCamera(glm::mat4 camUpdate) = 0;
     virtual void SetPerspective(glm::mat4 persUpdate) = 0;
     virtual void Render() = 0;
