@@ -6,8 +6,8 @@
 
 class Cube : public IObject {
 public:
-    void SetCamera(glm::mat4 camUpdate) override;
-    void SetPerspective(glm::mat4 persUpdate) override;
+    void SetCamera(glm::mat4 quCamUpdate) override;
+    void SetPerspective(glm::mat4 quPersUpdate) override;
     void Render() override;
 private:
     static constexpr float cubeVertices[] = {
