@@ -1,6 +1,9 @@
-cmake_minimum_required( VERSION 3.1 )
+cmake_minimum_required( VERSION 3.8 )
 
 project(AGL)
+
+#Use C++17 for more functionality
+set(CMAKE_CXX_STANDARD 17)
 
 find_package( OpenGL REQUIRED )
 
@@ -20,7 +23,7 @@ set(AGL_src
         Objects/3D/Cube.h
         Scene/MainScene.h
         Objects/3D/Cube.cpp
-        Scene/MainScene.cpp)
+        Scene/MainScene.cpp Interface/IScene.h)
 
 add_executable( AGLex WIN32 ${AGL_src} )
 target_link_libraries( AGLex ${OPENGL_LIBRARIES} glfw )
