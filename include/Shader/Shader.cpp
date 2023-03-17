@@ -97,3 +97,7 @@ void Shader::Mat4Uniform(const char* name, const glm::mat4 value) {
     int loc = glGetUniformLocation(ID, name);
     glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(value));
 }
+
+void Shader::CleanUp() {
+    glDeleteProgram(ID);
+}

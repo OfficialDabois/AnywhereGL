@@ -16,6 +16,7 @@ public:
     void IntUniform(const char* name, GLint value);
     void UIntUniform(const char* name, GLuint value);
     void Mat4Uniform(const char* name, glm::mat4 value);
+    void CleanUp();
 };
 
 #endif

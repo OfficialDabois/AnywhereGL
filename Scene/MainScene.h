@@ -8,6 +8,9 @@
 
 class MainScene : public IScene{
 public:
+    MainScene();
+    ~MainScene() = default;
+
     void Add(IObject* object) override;
     void Remove(IObject* object) override;
     void Render() override;
@@ -15,7 +18,7 @@ public:
     std::vector<IObject*> objects;
 
     glm::mat4 camPers = glm::mat4(1.0f);
-    glm::mat4 camUpd = glm::mat4(1.0f);
+    glm::mat4 camView = glm::mat4(1.0f);
 };
 
 

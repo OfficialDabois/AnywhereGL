@@ -1,6 +1,8 @@
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "Scene/MainScene.h"
+#include "Objects/3D/Cube.h"
 
 int main() {
     glfwInit();
@@ -21,9 +23,16 @@ int main() {
         return -1;
     }
 
+    MainScene mainScene;
+    Cube cube;
+
+    mainScene.Add(&cube);
+
     while(!glfwWindowShouldClose(window)) {
         glClearColor(0.5f, 0.1f, 0.9f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
+
+        mainScene.Render();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
