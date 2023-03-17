@@ -20,8 +20,9 @@ public:
 private:
     unsigned int VAO, VBO, EBO;
 
-    glm::mat4 quCamUpdate;
-    glm::mat4 quPersUpdate;
+    glm::mat4 quCamUpdate = glm::mat4(1.0f);
+    glm::mat4 quPersUpdate = glm::mat4(1.0f);
+    glm::mat4 quModel = glm::mat4(1.0f);
 
     static constexpr float cubeVertices[] = {
         -1.0f, 1.0f, 0.0f,

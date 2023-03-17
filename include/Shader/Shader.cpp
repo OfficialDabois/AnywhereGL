@@ -93,7 +93,7 @@ void Shader::UIntUniform(const char* name, GLuint value) {
     glUniform1ui(loc, value);
 }
 
-void Shader::Mat4Uniform(const char* name, const glm::mat4 value) {
+void Shader::Mat4Uniform(const char* name, const glm::mat4& value) const{
     int loc = glGetUniformLocation(ID, name);
     glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(value));
 }

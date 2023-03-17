@@ -2,9 +2,8 @@
 
 layout (location = 0) in vec3 aPos;
 
-uniform mat4 camView;
-uniform mat4 perspective;
+uniform mat4 mvp;
 
 void main() {
-    gl_Position = vec4(aPos, 1.0f) * camView * perspective;
+    gl_Position =  mvp * vec4(aPos, 1.0f);
 }

@@ -1,4 +1,5 @@
 #include "Cube.h"
+#include <iostream>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glad/glad.h>
@@ -28,21 +29,22 @@ Cube::~Cube() {
 
 }
 
-Shader Cube::shader() {
-    return {"/Users/sebastianwhittingham/Documents/Coding/C++/Games/AnywhereGL/Objects/3D/Vertex.vert", "/Users/sebastianwhittingham/Documents/Coding/C++/Games/AnywhereGL/Objects/3D/Fragment.frag"};
-}
-
 void Cube::SetCamera(glm::mat4 camUpdate) {
     quCamUpdate = camUpdate;
-    shader().Mat4Uniform("camView", camUpdate);
 }
 
 void Cube::SetPerspective(glm::mat4 persUpdate) {
     quPersUpdate = persUpdate;
-    shader().Mat4Uniform("perspective", persUpdate);
+}
+
+Shader Cube::shader() {
+    return {"C:\\Users\\tarar\\CLionProjects\\AnywhereGL\\Objects\\3D\\Vertex.vert", "C:\\Users\\tarar\\CLionProjects\\AnywhereGL\\Objects\\3D\\Fragment.frag"};
 }
 
 void Cube::Render() {
     shader().Use();
+
+    glm::mat4 mvp = quPersUpdate * quCamUpdate * quModel;
+    shader().Mat4Uniform("mvp", mvp);
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
