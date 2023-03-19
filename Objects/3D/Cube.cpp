@@ -3,7 +3,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glad/glad.h>
-#include <GLFW/glfw3.h>
+
 
 Cube::Cube() {
     glGenBuffers(1, &VBO);
@@ -26,7 +26,6 @@ Cube::~Cube() {
     glDeleteBuffers(1, &VBO);
     glDeleteBuffers(1, &EBO);
     glDeleteVertexArrays(1, &VAO);
-
 }
 
 void Cube::SetCamera(glm::mat4 camUpdate) {
@@ -38,12 +37,12 @@ void Cube::SetPerspective(glm::mat4 persUpdate) {
 }
 
 Shader Cube::shader() {
-    return {"C:\\Users\\tarar\\CLionProjects\\AnywhereGL\\Objects\\3D\\Vertex.vert", "C:\\Users\\tarar\\CLionProjects\\AnywhereGL\\Objects\\3D\\Fragment.frag"};
+    return {"../Objects/3D/Vertex.vert", "../Objects/3D/Fragment.frag"};
 }
 
 void Cube::Render() {
     shader().Use();
-
+    quModel = glm::rotate(quModel, glm::radians(0.5f), glm::vec3(0, 1, 0));
     glm::mat4 mvp = quPersUpdate * quCamUpdate * quModel;
     shader().Mat4Uniform("mvp", mvp);
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);

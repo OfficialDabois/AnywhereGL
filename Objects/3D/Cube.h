@@ -25,16 +25,16 @@ private:
     glm::mat4 quModel = glm::mat4(1.0f);
 
     static constexpr float cubeVertices[] = {
-        -1.0f, 1.0f, 0.0f,
-        -1.0f, 0.0f, 0.0f,
-         0.0f, 0.0f, 0.0f,
-         0.0f, 1.0f, 0.0f,
+        -0.5f, 0.5f, 0.0f,
+        -0.5f, 0.0f, 0.0f,
+         0.5f, -0.5f, 0.0f,
+         0.5f, 0.5f, 0.0f,
 
-            -1.0f, 1.0f, 1.0f,
-            -1.0f, 0.0f, 1.0f,
+            -0.5f, 0.5f, 0.5f,
+            -0.5f, -0.5f, 0.5f,
 
-            0.0f, 1.0f, 1.0f,
-            0.0f, 0.0f, 1.0f
+            0.5f, 0.5f, 0.5f,
+            0.5f, -0.5f, 0.5f
     };
 
     static constexpr unsigned int indices[] = {
