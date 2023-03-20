@@ -5,7 +5,7 @@
 #include <glad/glad.h>
 
 
-Cube::Cube() {
+Cube::Cube(glm::vec3 pos) {
     glGenBuffers(1, &VBO);
     glGenBuffers(1, &EBO);
     glGenVertexArrays(1, &VAO);
@@ -20,6 +20,8 @@ Cube::Cube() {
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
+
+    quModel = glm::translate(quModel, pos);
 }
 
 Cube::~Cube() {
@@ -42,8 +44,5 @@ Shader Cube::shader() {
 
 void Cube::Render() {
     shader().Use();
-    quModel = glm::rotate(quModel, glm::radians(0.5f), glm::vec3(0, 1, 0));
-    glm::mat4 mvp = quPersUpdate * quCamUpdate * quModel;
-    shader().Mat4Uniform("mvp", mvp);
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }

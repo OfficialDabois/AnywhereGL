@@ -29,7 +29,7 @@ int main() {
     }
 
     MainScene mainScene;
-    Cube cube;
+    Cube cube(glm::vec3(0, 0, -5));
 
     mainScene.Add(&cube);
 

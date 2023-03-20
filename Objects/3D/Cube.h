@@ -9,7 +9,7 @@
 
 class Cube : public IObject {
 public:
-    Cube();
+    Cube(glm::vec3 pos);
     ~Cube();
 
     void SetCamera(glm::mat4 camUpdate) override;
@@ -26,15 +26,15 @@ private:
 
     static constexpr float cubeVertices[] = {
         -0.5f, 0.5f, 0.0f,
-        -0.5f, 0.0f, 0.0f,
+        -0.5f, -0.5f, 0.0f,
          0.5f, -0.5f, 0.0f,
          0.5f, 0.5f, 0.0f,
 
-            -0.5f, 0.5f, 0.5f,
-            -0.5f, -0.5f, 0.5f,
+            -0.5f, 0.5f, 1.0f,
+            -0.5f, -0.5f, 1.0f,
 
-            0.5f, 0.5f, 0.5f,
-            0.5f, -0.5f, 0.5f
+            0.5f, 0.5f, 1.0f,
+            0.5f, -0.5f, 1.0f
     };
 
     static constexpr unsigned int indices[] = {
