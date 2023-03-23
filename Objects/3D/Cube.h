@@ -15,9 +15,8 @@ public:
     void SetCamera(glm::mat4 camUpdate) override;
     void SetPerspective(glm::mat4 persUpdate) override;
     void Render() override;
-
-    static Shader shader();
 private:
+    static Shader shader();
     unsigned int VAO, VBO, EBO;
 
     glm::mat4 quCamUpdate = glm::mat4(1.0f);

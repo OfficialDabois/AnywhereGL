@@ -3,6 +3,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glad/glad.h>
+#include <optional>
 
 
 Cube::Cube(glm::vec3 pos) {
@@ -20,7 +21,6 @@ Cube::Cube(glm::vec3 pos) {
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-
     quModel = glm::translate(quModel, pos);
 }
 
@@ -44,5 +44,7 @@ Shader Cube::shader() {
 
 void Cube::Render() {
     shader().Use();
+    glm::mat4 mvp = quPersUpdate * quCamUpdate * quModel;
+    shader().Mat4Uniform("mvp", mvp);
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }

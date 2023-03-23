@@ -30,8 +30,10 @@ int main() {
 
     MainScene mainScene;
     Cube cube(glm::vec3(0, 0, -5));
+    Cube cubeT(glm::vec3(5, 0, 0));
 
     mainScene.Add(&cube);
+    mainScene.Add(&cubeT);
 
     while(!glfwWindowShouldClose(window)) {
         glClearColor(0.5f, 0.1f, 0.9f, 1.0f);

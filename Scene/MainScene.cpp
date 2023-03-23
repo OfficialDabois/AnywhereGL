@@ -3,7 +3,7 @@
 
 MainScene::MainScene() {
     camPers = glm::perspective(glm::radians(45.0f), (float)1920/(float)1080, 0.1f, 100.0f);
-    camView = glm::lookAt(glm::vec3(0, 0, -10), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+    camView = glm::lookAt(glm::vec3(0, 5, -10), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 }
 
 void MainScene::Add(IObject* object) {
