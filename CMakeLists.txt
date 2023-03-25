@@ -23,7 +23,8 @@ set(AGL_src
         Objects/3D/Cube.h
         Scene/MainScene.h
         Objects/3D/Cube.cpp
-        Scene/MainScene.cpp Interface/IScene.h)
+        Scene/MainScene.cpp
+        Interface/IScene.h)
 
 add_executable( AGLex WIN32 ${AGL_src} )
 target_link_libraries( AGLex ${OPENGL_LIBRARIES} glfw )

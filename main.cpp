@@ -30,14 +30,16 @@ int main() {
 
     MainScene mainScene;
     Cube cube(glm::vec3(0, 0, -5));
-    Cube cubeT(glm::vec3(5, 0, 0));
+
+    cube.SetTexture("container.jpg");
 
     mainScene.Add(&cube);
-    mainScene.Add(&cubeT);
+
+    glEnable(GL_DEPTH_TEST);
 
     while(!glfwWindowShouldClose(window)) {
         glClearColor(0.5f, 0.1f, 0.9f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         mainScene.Render();
 
