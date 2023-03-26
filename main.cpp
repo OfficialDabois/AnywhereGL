@@ -29,9 +29,9 @@ int main() {
     }
 
     MainScene mainScene;
-    Cube cube(glm::vec3(0, 0, -5));
+    Cube cube(glm::vec3(0, 0, 0));
 
-    cube.SetTexture("container.jpg");
+    cube.SetTexture("../Objects/3D/container.jpg");
 
     mainScene.Add(&cube);
 
