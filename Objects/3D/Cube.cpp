@@ -17,7 +17,7 @@ Cube::Cube(glm::vec3 pos) {
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
     quModel = glm::translate(quModel, pos);
@@ -66,7 +66,6 @@ Shader Cube::shader() {
 
 void Cube::Render() {
     shader().Use();
-    quModel = glm::rotate(quModel, glm::radians(0.5f), glm::vec3(0.0f, 1.0f, 1.0f));
     glm::mat4 mvp = quPersUpdate * quCamUpdate * quModel;
     shader().Mat4Uniform("mvp", mvp);
     glDrawArrays(GL_TRIANGLES, 0, 36);

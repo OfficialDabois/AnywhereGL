@@ -30,10 +30,25 @@ int main() {
 
     MainScene mainScene;
     Cube cube(glm::vec3(0, 0, 0));
+    Cube cubeT(glm::vec3(5, 1, 5));
+    Cube cubeD(glm::vec3(2, 2, 4));
+    Cube cubeF(glm::vec3(1, 3, 7));
+    Cube cubeG(glm::vec3(3, -1, 7));
+    Cube cubeV(glm::vec3(2, -1, 6));
 
-    cube.SetTexture("../Objects/3D/container.jpg");
+    cube.SetTexture("../Objects/3D/teams.jpg");
+    cubeT.SetTexture("../Objects/3D/teams.jpg");
+    cubeD.SetTexture("../Objects/3D/teams.jpg");
+    cubeF.SetTexture("../Objects/3D/teams.jpg");
+    cubeV.SetTexture("../Objects/3D/teams.jpg");
+    cubeG.SetTexture("../Objects/3D/teams.jpg");
 
     mainScene.Add(&cube);
+    mainScene.Add(&cubeT);
+    mainScene.Add(&cubeD);
+    mainScene.Add(&cubeF);
+    mainScene.Add(&cubeG);
+    mainScene.Add(&cubeV);
 
     glEnable(GL_DEPTH_TEST);
 
