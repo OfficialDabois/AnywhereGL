@@ -36,12 +36,12 @@ int main() {
     Cube cubeG(glm::vec3(3, -1, 7));
     Cube cubeV(glm::vec3(2, -1, 6));
 
-    cube.SetTexture("../Objects/3D/teams.jpg");
+    cube.SetTexture("../Objects/3D/container.jpg");
     cubeT.SetTexture("../Objects/3D/teams.jpg");
-    cubeD.SetTexture("../Objects/3D/teams.jpg");
-    cubeF.SetTexture("../Objects/3D/teams.jpg");
+    cubeD.SetTexture("../Objects/3D/container.jpg");
+    cubeF.SetTexture("../Objects/3D/roblox.jpg");
     cubeV.SetTexture("../Objects/3D/teams.jpg");
-    cubeG.SetTexture("../Objects/3D/teams.jpg");
+    cubeG.SetTexture("../Objects/3D/roblox.jpg");
 
     mainScene.Add(&cube);
     mainScene.Add(&cubeT);

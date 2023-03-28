@@ -19,6 +19,7 @@ public:
 private:
     static Shader shader();
     unsigned int VAO, VBO;
+    unsigned int textureG;
 
     glm::mat4 quCamUpdate = glm::mat4(1.0f);
     glm::mat4 quPersUpdate = glm::mat4(1.0f);

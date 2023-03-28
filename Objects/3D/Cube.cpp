@@ -53,8 +53,7 @@ void Cube::SetTexture(const char* fileLoc) {
     if (data) {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
-
-        glBindTexture(GL_TEXTURE_2D, texture);
+        textureG = texture;
     }
 
     stbi_image_free(data);
@@ -66,6 +65,8 @@ Shader Cube::shader() {
 
 void Cube::Render() {
     shader().Use();
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, textureG);
     glm::mat4 mvp = quPersUpdate * quCamUpdate * quModel;
     shader().Mat4Uniform("mvp", mvp);
     glDrawArrays(GL_TRIANGLES, 0, 36);
