@@ -1,7 +1,6 @@
 #ifndef SGL_SHADER_H
 #define SGL_SHADER_H
 
-#include <glad/glad.h>
 #include <glm/glm.hpp>
 
 class Shader {
@@ -12,9 +11,9 @@ public:
 
     void Use();
 
-    void FloatUniform(const char* name, GLfloat value);
-    void IntUniform(const char* name, GLint value);
-    void UIntUniform(const char* name, GLuint value);
+    void FloatUniform(const char* name, float value);
+    void IntUniform(const char* name, int value);
+    void UIntUniform(const char* name, unsigned int value);
     void Mat4Uniform(const char* name, const glm::mat4& value)const;
     void CleanUp();
 };

@@ -2,6 +2,7 @@
 #define AGL_MAINSCENE_H
 
 #include <vector>
+#include <GLFW/glfw3.h>
 #include "../Interface/IObject.h"
 #include "../Interface/IScene.h"
 
@@ -14,6 +15,8 @@ public:
     void Add(IObject* object) override;
     void Remove(IObject* object) override;
     void Render() override;
+
+    GLFWwindow* window;
 
     std::vector<IObject*> objects;
 

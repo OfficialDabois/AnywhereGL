@@ -1,8 +1,6 @@
-#include "Cube.h"
-#include <iostream>
-#include <glm/gtc/matrix_transform.hpp>
 #include <glad/glad.h>
-#include <optional>
+#include "Cube.h"
+#include <glm/gtc/matrix_transform.hpp>
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
@@ -34,6 +32,11 @@ void Cube::SetCamera(glm::mat4 camUpdate) {
 
 void Cube::SetPerspective(glm::mat4 persUpdate) {
     quPersUpdate = persUpdate;
+}
+
+//If you dont want to scale a value set it to 1
+void Cube::Scale(glm::vec3 scale) {
+    quModel = glm::scale(quModel, scale);
 }
 
 void Cube::SetTexture(const char* fileLoc) {

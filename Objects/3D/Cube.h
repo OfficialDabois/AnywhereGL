@@ -3,7 +3,6 @@
 
 #include "../Interface/IObject.h"
 #include <glm/gtc/matrix_transform.hpp>
-#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <Shader/Shader.h>
 
@@ -16,8 +15,9 @@ public:
     void SetPerspective(glm::mat4 persUpdate) override;
     void Render() override;
     void SetTexture(const char* fileLoc);
+    void Scale(glm::vec3 scale);
 private:
-    static Shader shader();
+    Shader shader();
     unsigned int VAO, VBO;
     unsigned int textureG;
 
