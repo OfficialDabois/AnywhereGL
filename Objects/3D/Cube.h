@@ -16,6 +16,7 @@ public:
     void Render() override;
     void SetTexture(const char* fileLoc);
     void Scale(glm::vec3 scale);
+    void Rotate(float angle, glm::vec3 axis);
 private:
     Shader shader();
     unsigned int VAO, VBO;

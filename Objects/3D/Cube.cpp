@@ -39,6 +39,11 @@ void Cube::Scale(glm::vec3 scale) {
     quModel = glm::scale(quModel, scale);
 }
 
+//Normalize axis
+void Cube::Rotate(float angle, glm::vec3 axis) {
+    quModel = glm::rotate(quModel, glm::radians(angle), axis);
+}
+
 void Cube::SetTexture(const char* fileLoc) {
     unsigned int texture;
 

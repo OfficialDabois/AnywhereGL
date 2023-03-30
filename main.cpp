@@ -18,6 +18,8 @@ int main() {
     cubeT.SetTexture("../Objects/3D/teams.jpg");
     cubeF.SetTexture("../Objects/3D/container.jpg");
 
+    cube.Rotate(45.0f, glm::vec3(1.0f, 0.0f, 0.0f));
+
     mainScene.Add(&cube);
     mainScene.Add(&cubeT);
     mainScene.Add(&cubeD);
@@ -30,6 +32,8 @@ int main() {
     while(!glfwWindowShouldClose(mainScene.window)) {
         glClearColor(0.5f, 0.1f, 0.9f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        cubeT.Rotate(0.5f, glm::vec3(1.0f, 0.0f, 0.0f));
 
         mainScene.Render();
 
