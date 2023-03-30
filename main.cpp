@@ -1,11 +1,12 @@
 #include <iostream>
 #include <glad/glad.h>
-#include <GLFW/glfw3.h>
 #include "Scene/MainScene.h"
 #include "Objects/3D/Cube.h"
+#include "Util/Window.h"
 
 int main() {
     MainScene mainScene;
+    Window window = Init("Hello world", 1920, 1080);
 
     Cube cube(glm::vec3(0, 0, 0));
     Cube cubeT(glm::vec3(5, 1, 5));
@@ -29,15 +30,15 @@ int main() {
 
     glEnable(GL_DEPTH_TEST);
 
-    while(!glfwWindowShouldClose(mainScene.window)) {
-        glClearColor(0.5f, 0.1f, 0.9f, 1.0f);
+    while(!ShouldWindowClose(window)) {
+        glClearColor(0.5f, 0.1f, 0.6f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         cubeT.Rotate(0.5f, glm::vec3(1.0f, 0.0f, 0.0f));
 
         mainScene.Render();
 
-        glfwSwapBuffers(mainScene.window);
-        glfwPollEvents();
+        SwapBuffers(window);
+        PollEvents();
     }
 }

@@ -24,6 +24,7 @@ Cube::Cube(glm::vec3 pos) {
 Cube::~Cube() {
     glDeleteBuffers(1, &VBO);
     glDeleteVertexArrays(1, &VAO);
+    glDeleteProgram(shader().ID);
 }
 
 void Cube::SetCamera(glm::mat4 camUpdate) {
@@ -34,7 +35,7 @@ void Cube::SetPerspective(glm::mat4 persUpdate) {
     quPersUpdate = persUpdate;
 }
 
-//If you dont want to scale a value set it to 1
+//If you do\n't want to scale a value set it to 1
 void Cube::Scale(glm::vec3 scale) {
     quModel = glm::scale(quModel, scale);
 }

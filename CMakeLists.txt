@@ -24,7 +24,7 @@ set(AGL_src
         Scene/MainScene.h
         Objects/3D/Cube.cpp
         Scene/MainScene.cpp
-        Interface/IScene.h)
+        Interface/IScene.h Util/Window.cpp Util/Window.h)
 
 add_executable( AGLex WIN32 ${AGL_src} )
 target_link_libraries( AGLex ${OPENGL_LIBRARIES} glfw )
