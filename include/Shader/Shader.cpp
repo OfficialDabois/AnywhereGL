@@ -78,19 +78,9 @@ void Shader::Use() {
     glUseProgram(ID);
 }
 
-void Shader::FloatUniform(const char* name, GLfloat value) {
+void Shader::Vec3Uniform(const char* name, glm::vec3 value) {
     int loc = glGetUniformLocation(ID, name);
-    glUniform1f(loc, value);
-}
-
-void Shader::IntUniform(const char* name, GLint value) {
-    int loc = glGetUniformLocation(ID, name);
-    glUniform1i(loc, value);
-}
-
-void Shader::UIntUniform(const char* name, GLuint value) {
-    int loc = glGetUniformLocation(ID, name);
-    glUniform1ui(loc, value);
+    glUniform3f(loc, value.x, value.y, value.z);
 }
 
 void Shader::Mat4Uniform(const char* name, const glm::mat4& value) const{

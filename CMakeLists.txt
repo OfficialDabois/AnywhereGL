@@ -20,11 +20,15 @@ set(AGL_src
         include/Shader/Shader.cpp
         include/stb_image.h
         Interface/IObject.h
-        Objects/3D/Cube.h
+        Objects/3D/Cube/Cube.h
         Scene/MainScene.h
-        Objects/3D/Cube.cpp
+        Objects/3D/Cube/Cube.cpp
         Scene/MainScene.cpp
-        Interface/IScene.h Util/Window.cpp Util/Window.h)
+        Interface/IScene.h
+        Util/Window.cpp
+        Util/Window.h
+        Objects/3D/Light/Light.cpp
+        Objects/3D/Light/Light.h)
 
 add_executable( AGLex WIN32 ${AGL_src} )
 target_link_libraries( AGLex ${OPENGL_LIBRARIES} glfw )

@@ -1,7 +1,8 @@
 #include <iostream>
 #include <glad/glad.h>
 #include "Scene/MainScene.h"
-#include "Objects/3D/Cube.h"
+#include "Objects/3D/Cube/Cube.h"
+#include "Objects/3D/Light/Light.h"
 #include "Util/Window.h"
 
 int main() {
@@ -14,6 +15,7 @@ int main() {
     Cube cubeF(glm::vec3(1, 3, 7));
     Cube cubeG(glm::vec3(3, -1, 7));
     Cube cubeV(glm::vec3(2, -1, 6));
+    Light light(glm::vec3(0, 0, 9));
 
     cube.SetTexture("../Objects/3D/container.jpg");
     cubeT.SetTexture("../Objects/3D/teams.jpg");
@@ -27,6 +29,7 @@ int main() {
     mainScene.Add(&cubeF);
     mainScene.Add(&cubeG);
     mainScene.Add(&cubeV);
+    mainScene.Add(&light);
 
     glEnable(GL_DEPTH_TEST);
 

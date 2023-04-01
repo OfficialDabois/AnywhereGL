@@ -11,9 +11,7 @@ public:
 
     void Use();
 
-    void FloatUniform(const char* name, float value);
-    void IntUniform(const char* name, int value);
-    void UIntUniform(const char* name, unsigned int value);
+    void Vec3Uniform(const char* name, glm::vec3 value);
     void Mat4Uniform(const char* name, const glm::mat4& value)const;
     void CleanUp();
 };

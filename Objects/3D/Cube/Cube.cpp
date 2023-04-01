@@ -1,10 +1,10 @@
-#include <glad/glad.h>
+#include "glad/glad.h"
 #include "Cube.h"
-#include <glm/gtc/matrix_transform.hpp>
+#include "glm/gtc/matrix_transform.hpp"
 #define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
+#include "stb_image.h"
 
-Cube::Cube(glm::vec3 pos) {
+Cube::Cube(glm::vec3 pos) : shader("../Objects/3D/Cube/Vertex.vert", "../Objects/3D/Cube/Fragment.frag") {
     glGenBuffers(1, &VBO);
     glGenVertexArrays(1, &VAO);
 
@@ -13,18 +13,26 @@ Cube::Cube(glm::vec3 pos) {
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
+
+    glGenVertexArrays(1, &lightVAO);
+    glBindVertexArray(lightVAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
 
     quModel = glm::translate(quModel, pos);
+    lightColour = glm::vec3(1.0f, 1.0f, 1.0f);
+    objectColour = glm::vec3(1.0f, 0.5f, 0.31f);
 }
 
 Cube::~Cube() {
     glDeleteBuffers(1, &VBO);
     glDeleteVertexArrays(1, &VAO);
-    glDeleteProgram(shader().ID);
+    glDeleteProgram(shader.ID);
 }
 
 void Cube::SetCamera(glm::mat4 camUpdate) {
@@ -68,15 +76,13 @@ void Cube::SetTexture(const char* fileLoc) {
     stbi_image_free(data);
 }
 
-Shader Cube::shader() {
-    return {"../Objects/3D/Vertex.vert", "../Objects/3D/Fragment.frag"};
-}
-
 void Cube::Render() {
-    shader().Use();
-    glActiveTexture(GL_TEXTURE0);
+    shader.Use();
+    shader.Vec3Uniform("lightColour", glm::vec3(1.0f, 1.0f, 1.0f));
+    shader.Vec3Uniform("objectColour", glm::vec3(1.0f, 0.5f, 0.31f));
+
     glBindTexture(GL_TEXTURE_2D, textureG);
     glm::mat4 mvp = quPersUpdate * quCamUpdate * quModel;
-    shader().Mat4Uniform("mvp", mvp);
+    shader.Mat4Uniform("mvp", mvp);
     glDrawArrays(GL_TRIANGLES, 0, 36);
 }
