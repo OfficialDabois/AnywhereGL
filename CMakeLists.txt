@@ -28,7 +28,7 @@ set(AGL_src
         Util/Window.cpp
         Util/Window.h
         Objects/3D/Light/Light.cpp
-        Objects/3D/Light/Light.h)
+        Objects/3D/Light/Light.h Util/Camera.cpp Util/Camera.h)
 
 add_executable( AGLex WIN32 ${AGL_src} )
 target_link_libraries( AGLex ${OPENGL_LIBRARIES} glfw )

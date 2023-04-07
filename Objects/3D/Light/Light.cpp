@@ -3,7 +3,7 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
-Light::Light(glm::vec3 pos)  : shader("../Objects/3D/Light/Vertex.vert", "../Objects/3D/Light/Fragment.frag"){
+Light::Light(glm::vec3 pos, glm::vec3 colour) : shader("../Objects/3D/Light/Vertex.vert", "../Objects/3D/Light/Fragment.frag"){
     glGenBuffers(1, &VBO);
     glGenVertexArrays(1, &VAO);
 
@@ -15,16 +15,13 @@ Light::Light(glm::vec3 pos)  : shader("../Objects/3D/Light/Vertex.vert", "../Obj
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
-    glGenVertexArrays(1, &lightVAO);
-    glBindVertexArray(lightVAO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3*sizeof(float)));
     glEnableVertexAttribArray(0);
 
     quModel = glm::translate(quModel, pos);
+
     Light::pos = pos;
+    Light::colour = colour;
 }
 
 Light::~Light() {
@@ -42,6 +39,8 @@ void Light::SetPerspective(glm::mat4 persUpdate) {
 }
 
 void Light::Render() {
+    glBindVertexArray(VAO);
+
     shader.Use();
     glm::mat4 mvp = quPersUpdate * quCamUpdate * quModel;
     shader.Mat4Uniform("mvp", mvp);

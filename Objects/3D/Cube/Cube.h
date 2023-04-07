@@ -8,7 +8,7 @@
 
 class Cube : public IObject {
 public:
-    explicit Cube(glm::vec3 pos);
+    explicit Cube(glm::vec3 pos, glm::vec3 lightPos);
     ~Cube();
 
     void SetCamera(glm::mat4 camUpdate) override;
@@ -17,9 +17,11 @@ public:
     void SetTexture(const char* fileLoc);
     void Scale(glm::vec3 scale);
     void Rotate(float angle, glm::vec3 axis);
+
+    unsigned int shaderID = shader.ID;
 private:
     Shader shader;
-    unsigned int VAO, VBO, lightVAO;
+    unsigned int VAO, VBO;
     unsigned int textureG;
 
     glm::mat4 quCamUpdate = glm::mat4(1.0f);
@@ -27,7 +29,7 @@ private:
     glm::mat4 quModel = glm::mat4(1.0f);
 
     glm::vec3 objectColour;
-    glm::vec3 lightColour;
+    glm::vec3 lightPos;
 
     static constexpr float cubeVertices[] = {
             -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,

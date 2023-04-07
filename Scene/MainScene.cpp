@@ -1,13 +1,12 @@
-#include <glad/glad.h>
 #include "MainScene.h"
 #include <iostream>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include "../Util/Camera.h"
 
-MainScene::MainScene() {
-    //changes the camera view
-    camPers = glm::perspective(glm::radians(45.0f), (float)1920/(float)1080, 0.1f, 100.0f);
-    camView = glm::lookAt(glm::vec3(0, 5, -10), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+MainScene::MainScene(Camera* camera) {
+    camView = camera->view;
+    camPers = camera->perspective;
 }
 
 void MainScene::Add(IObject* object) {

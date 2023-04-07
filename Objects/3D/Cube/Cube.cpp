@@ -4,7 +4,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-Cube::Cube(glm::vec3 pos) : shader("../Objects/3D/Cube/Vertex.vert", "../Objects/3D/Cube/Fragment.frag") {
+Cube::Cube(glm::vec3 pos, glm::vec3 lightPos) : shader("../Objects/3D/Cube/Cube.vert", "../Objects/3D/Cube/Cube.frag") {
     glGenBuffers(1, &VBO);
     glGenVertexArrays(1, &VAO);
 
@@ -16,17 +16,11 @@ Cube::Cube(glm::vec3 pos) : shader("../Objects/3D/Cube/Vertex.vert", "../Objects
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
-    glGenVertexArrays(1, &lightVAO);
-    glBindVertexArray(lightVAO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3*sizeof(float)));
+    glEnableVertexAttribArray(1);
 
     quModel = glm::translate(quModel, pos);
-    lightColour = glm::vec3(1.0f, 1.0f, 1.0f);
-    objectColour = glm::vec3(1.0f, 0.5f, 0.31f);
+    Cube::lightPos = lightPos;
 }
 
 Cube::~Cube() {
@@ -43,7 +37,7 @@ void Cube::SetPerspective(glm::mat4 persUpdate) {
     quPersUpdate = persUpdate;
 }
 
-//If you do\n't want to scale a value set it to 1
+//If you don't want to scale a value set it to 1
 void Cube::Scale(glm::vec3 scale) {
     quModel = glm::scale(quModel, scale);
 }
@@ -77,12 +71,16 @@ void Cube::SetTexture(const char* fileLoc) {
 }
 
 void Cube::Render() {
+    glBindVertexArray(VAO);
+
     shader.Use();
-    shader.Vec3Uniform("lightColour", glm::vec3(1.0f, 1.0f, 1.0f));
     shader.Vec3Uniform("objectColour", glm::vec3(1.0f, 0.5f, 0.31f));
+    shader.Vec3Uniform("lightPos", lightPos);
 
     glBindTexture(GL_TEXTURE_2D, textureG);
-    glm::mat4 mvp = quPersUpdate * quCamUpdate * quModel;
-    shader.Mat4Uniform("mvp", mvp);
+    glm::mat4 vp = quPersUpdate * quCamUpdate;
+    shader.Mat4Uniform("vp", vp);
+    shader.Mat4Uniform("model", quModel);
+
     glDrawArrays(GL_TRIANGLES, 0, 36);
 }

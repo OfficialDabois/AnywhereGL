@@ -1,6 +1,7 @@
 #include <glad/glad.h>
 #include "Window.h"
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
 
 void Framebuffer_Size_Callback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
@@ -39,4 +40,9 @@ void SwapBuffers(Window window) {
 
 void PollEvents() {
     glfwPollEvents();
+}
+
+void SetColour(glm::vec3 colour) {
+    glClearColor(colour.x, colour.y, colour.z, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }

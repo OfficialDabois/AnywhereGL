@@ -8,7 +8,7 @@
 
 class Light : public IObject {
 public:
-    explicit Light(glm::vec3 pos);
+    explicit Light(glm::vec3 pos, glm::vec3 colour);
     ~Light();
 
     void SetCamera(glm::mat4 camUpdate) override;
@@ -17,8 +17,10 @@ public:
 
 private:
     glm::vec3 pos;
+    glm::vec3 colour;
+
     Shader shader;
-    unsigned int VAO, VBO, lightVAO;
+    unsigned int VAO, VBO;
 
     glm::mat4 quCamUpdate = glm::mat4(1.0f);
     glm::mat4 quPersUpdate = glm::mat4(1.0f);

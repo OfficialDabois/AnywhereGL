@@ -5,11 +5,12 @@
 #include <GLFW/glfw3.h>
 #include "../Interface/IObject.h"
 #include "../Interface/IScene.h"
+#include "../Util/Camera.h"
 
 
 class MainScene : public IScene{
 public:
-    MainScene();
+    explicit MainScene(Camera* camera);
     ~MainScene() = default;
 
     void Add(IObject* object) override;
