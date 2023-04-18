@@ -19,9 +19,9 @@ int main() {
     Light light(glm::vec3(4, 0, 1), lightCol);
     Light lightT(glm::vec3(-3, 1, 5), lightCol);
 
-    cube.SetTexture("../Objects/3D/container.jpg");
-    cubeT.SetTexture("../Objects/3D/teams.jpg");
-    cubeF.SetTexture("../Objects/3D/container.jpg");
+    cube.SetTexture("../Objects/3D/Cube/container.jpg");
+    cubeT.SetTexture("../Objects/3D/Cube/teams.jpg");
+    cubeF.SetTexture("../Objects/3D/Cube/container.jpg");
 
     cube.Rotate(45.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 

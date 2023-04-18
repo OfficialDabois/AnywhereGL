@@ -26,5 +26,6 @@ void MainScene::Remove(IObject* object) {
 void MainScene::Render() {
     for (auto & object : objects) {
         object->Render();
+
     }
 }
