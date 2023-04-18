@@ -24,7 +24,6 @@ set(AGL_src
         Scene/MainScene.h
         Objects/3D/Cube/Cube.cpp
         Scene/MainScene.cpp
-        Interface/IScene.h
         Util/Window.cpp
         Util/Window.h
         Objects/3D/Light/Light.cpp

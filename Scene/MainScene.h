@@ -4,18 +4,17 @@
 #include <vector>
 #include <GLFW/glfw3.h>
 #include "../Interface/IObject.h"
-#include "../Interface/IScene.h"
 #include "../Util/Camera.h"
 
 
-class MainScene : public IScene{
+class MainScene {
 public:
     explicit MainScene(Camera* camera);
     ~MainScene() = default;
 
-    void Add(IObject* object) override;
-    void Remove(IObject* object) override;
-    void Render() override;
+    void Add(IObject* object);
+    void Remove(IObject* object);
+    void Render();
 
     GLFWwindow* window;
 
