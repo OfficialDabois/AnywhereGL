@@ -4,9 +4,13 @@ layout (location = 1) in vec3 aNormal;
 
 uniform mat4 mvp;
 
+in vec3 lCol;
+
+out vec3 aCol;
 out vec3 myNormal;
 
 void main() {
     gl_Position = mvp * vec4(aPos, 1.0);
     myNormal = aNormal;
+    aCol = lCol;
 }

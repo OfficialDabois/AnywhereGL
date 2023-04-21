@@ -77,7 +77,7 @@ void Cube::Render() {
     glBindVertexArray(VAO);
 
     shader.Use();
-    shader.Vec3Uniform("objectColour", glm::vec3(1.0f, 0.5f, 0.31f));
+    shader.Vec3Uniform("objectColour", glm::vec3(0.8f, 0.8f, 0.8f));
     shader.Vec3Uniform("lightPos", lightPos);
 
     glBindTexture(GL_TEXTURE_2D, textureG);

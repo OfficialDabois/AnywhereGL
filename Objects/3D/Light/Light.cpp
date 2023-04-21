@@ -43,6 +43,7 @@ void Light::Render() {
 
     shader.Use();
     glm::mat4 mvp = quPersUpdate * quCamUpdate * quModel;
+    shader.Vec3Uniform("lCol", Light::colour);
     shader.Mat4Uniform("mvp", mvp);
 
     glDrawArrays(GL_TRIANGLES, 0, 36);
