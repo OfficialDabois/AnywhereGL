@@ -1,8 +1,5 @@
 #include "MainScene.h"
 #include <iostream>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include "../Util/Camera.h"
 
 MainScene::MainScene(Camera* camera) {
     camView = camera->view;

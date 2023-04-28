@@ -14,11 +14,10 @@ public:
     void SetCamera(glm::mat4 camUpdate) override;
     void SetPerspective(glm::mat4 persUpdate) override;
     void Render() override;
+    glm::vec3 colour;
+    glm::vec3 pos;
 
 private:
-    glm::vec3 pos;
-    glm::vec3 colour;
-
     Shader shader;
     unsigned int VAO, VBO;
 

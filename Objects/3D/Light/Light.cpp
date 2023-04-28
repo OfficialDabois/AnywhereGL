@@ -1,6 +1,5 @@
 #include <glad/glad.h>
 #include "Light.h"
-#include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
 Light::Light(glm::vec3 pos, glm::vec3 colour) : shader("../Objects/3D/Light/Vertex.vert", "../Objects/3D/Light/Fragment.frag"){
@@ -43,8 +42,8 @@ void Light::Render() {
 
     shader.Use();
     glm::mat4 mvp = quPersUpdate * quCamUpdate * quModel;
-    shader.Vec3Uniform("lCol", Light::colour);
     shader.Mat4Uniform("mvp", mvp);
+    shader.Vec3Uniform("lCol", Light::colour);
 
     glDrawArrays(GL_TRIANGLES, 0, 36);
 }

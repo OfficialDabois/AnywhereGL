@@ -1,10 +1,12 @@
 #include "glad/glad.h"
 #include "Cube.h"
+
+#include <utility>
 #include "glm/gtc/matrix_transform.hpp"
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-Cube::Cube(glm::vec3 pos, glm::vec3 lightPos) : shader("../Objects/3D/Cube/Cube.vert", "../Objects/3D/Cube/Cube.frag") {
+Cube::Cube(glm::vec3 pos, std::vector<Light> lights) : shader("../Objects/3D/Cube/Cube.vert", "../Objects/3D/Cube/Cube.frag") {
     glGenBuffers(1, &VBO);
     glGenVertexArrays(1, &VAO);
 
@@ -23,7 +25,7 @@ Cube::Cube(glm::vec3 pos, glm::vec3 lightPos) : shader("../Objects/3D/Cube/Cube.
     glEnableVertexAttribArray(2);
 
     quModel = glm::translate(quModel, pos);
-    Cube::lightPos = lightPos;
+    Cube::lights = std::move(lights);
 }
 
 Cube::~Cube() {
@@ -78,10 +80,15 @@ void Cube::Render() {
 
     shader.Use();
     shader.Vec3Uniform("objectColour", glm::vec3(0.8f, 0.8f, 0.8f));
-    shader.Vec3Uniform("lightPos", lightPos);
 
     glBindTexture(GL_TEXTURE_2D, textureG);
     glm::mat4 vp = quPersUpdate * quCamUpdate;
+
+    for (int i = 0; i < Cube::lights.size(); i++) {
+        shader.Vec3Uniform("lightCol", Cube::lights[i].colour);
+        shader.Vec3Uniform("lightPos", Cube::lights[i].pos);
+    }
+
     shader.Mat4Uniform("vp", vp);
     shader.Mat4Uniform("model", quModel);
 

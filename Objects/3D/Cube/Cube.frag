@@ -8,18 +8,25 @@ in vec2 texCoord;
 
 out vec4 FragColor;
 
-vec3 lightCol = vec3(1.0, 1.0, 1.0);
-
+uniform vec3 lightCol;
 uniform vec3 objectColour;
 uniform vec3 lightPos;
 uniform sampler2D textureLook;
 
-void main() {
+vec3 LightCalc() {
     vec3 norm = normalize(myNormal);
     vec3 lightDir = normalize(lightPos - crntPos);
     float diff = max(dot(norm, lightDir), 0.0);
 
     vec3 result = (ambientConst + vec3(diff * lightCol)) * objectColour;
 
-    FragColor =  texture(textureLook, texCoord) * vec4(result, 1.0);
+    return result;
+}
+
+void main() {
+    vec3 calc = LightCalc();
+
+
+
+    FragColor =  texture(textureLook, texCoord) * vec4(calc, 1.0);
 }

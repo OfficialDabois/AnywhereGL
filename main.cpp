@@ -4,20 +4,22 @@
 #include "Objects/3D/Light/Light.h"
 #include "Util/Window.h"
 #include "Util/Camera.h"
+#include <vector>
 
 int main() {
     Window window = Init("Hello world", 1920, 1080);
 
     glm::vec3 lightCol = glm::vec3(1.0f, 0.0f, 0.0f);
+    std::vector<Light> lights;
 
-    Cube cube(glm::vec3(0, 0, 0), glm::vec3(4, 0, 1));
-    Cube cubeT(glm::vec3(5, 1, 5), glm::vec3(4, 0, 1));
-    Cube cubeD(glm::vec3(2, 2, 4), glm::vec3(4, 0, 1));
-    Cube cubeF(glm::vec3(1, 3, 7), glm::vec3(4, 0, 1));
-    Cube cubeG(glm::vec3(3, -1, 7), glm::vec3(4, 0, 1));
-    Cube cubeV(glm::vec3(2, -1, 6), glm::vec3(4, 0, 1));
     Light light(glm::vec3(4, 0, 1), lightCol);
-    Light lightT(glm::vec3(-3, 1, 5), lightCol);
+
+    Cube cube(glm::vec3(0, 0, 0), lights);
+    Cube cubeT(glm::vec3(5, 1, 5), lights);
+    Cube cubeD(glm::vec3(2, 2, 4), lights);
+    Cube cubeF(glm::vec3(1, 3, 7), lights);
+    Cube cubeG(glm::vec3(3, -1, 7), lights);
+    Cube cubeV(glm::vec3(2, -1, 6), lights);
 
     cube.SetTexture("../Objects/3D/Cube/container.jpg");
     cubeT.SetTexture("../Objects/3D/Cube/teams.jpg");
@@ -35,7 +37,6 @@ int main() {
     mainScene.Add(&cubeG);
     mainScene.Add(&cubeV);
     mainScene.Add(&light);
-    mainScene.Add(&lightT);
 
     glEnable(GL_DEPTH_TEST);
 
