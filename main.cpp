@@ -13,6 +13,10 @@ int main() {
     std::vector<Light> lights;
 
     Light light(glm::vec3(4, 0, 1), lightCol);
+    Light lightT(glm::vec3(-4, 0, 5), lightCol);
+
+    lights.push_back(light);
+    lights.push_back(lightT);
 
     Cube cube(glm::vec3(0, 0, 0), lights);
     Cube cubeT(glm::vec3(5, 1, 5), lights);

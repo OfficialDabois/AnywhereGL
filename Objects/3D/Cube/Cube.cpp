@@ -1,7 +1,7 @@
 #include "glad/glad.h"
 #include "Cube.h"
-
 #include <utility>
+#include <string>
 #include "glm/gtc/matrix_transform.hpp"
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -85,8 +85,11 @@ void Cube::Render() {
     glm::mat4 vp = quPersUpdate * quCamUpdate;
 
     for (int i = 0; i < Cube::lights.size(); i++) {
-        shader.Vec3Uniform("lightCol", Cube::lights[i].colour);
-        shader.Vec3Uniform("lightPos", Cube::lights[i].pos);
+        std::string valueCol = "lights[" + std::to_string(i) + "].Color";
+        std::string valuePos = "lights[" + std::to_string(i) + "].Pos";
+
+        shader.Vec3Uniform("lights[0].Color", Cube::lights[0].colour);
+        shader.Vec3Uniform("lights[0].Pos", Cube::lights[0].pos);
     }
 
     shader.Mat4Uniform("vp", vp);
