@@ -79,7 +79,7 @@ void Cube::Render() {
     glBindVertexArray(VAO);
 
     shader.Use();
-    shader.Vec3Uniform("objectColour", glm::vec3(0.8f, 0.8f, 0.8f));
+    shader.Vec3Uniform("objectColour", glm::vec3(0.3f, 0.3f, 0.3f));
 
     glBindTexture(GL_TEXTURE_2D, textureG);
     glm::mat4 vp = quPersUpdate * quCamUpdate;
@@ -88,8 +88,8 @@ void Cube::Render() {
         std::string valueCol = "lights[" + std::to_string(i) + "].Color";
         std::string valuePos = "lights[" + std::to_string(i) + "].Pos";
 
-        shader.Vec3Uniform("lights[0].Color", Cube::lights[0].colour);
-        shader.Vec3Uniform("lights[0].Pos", Cube::lights[0].pos);
+        shader.Vec3Uniform(valueCol.c_str(), Cube::lights[i].colour);
+        shader.Vec3Uniform(valuePos.c_str(), Cube::lights[i].pos);
     }
 
     shader.Mat4Uniform("vp", vp);

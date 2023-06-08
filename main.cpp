@@ -9,11 +9,11 @@
 int main() {
     Window window = Init("Hello world", 1920, 1080);
 
-    glm::vec3 lightCol = glm::vec3(0.0f, 1.0f, 0.0f);
+    glm::vec3 lightCol = glm::vec3(1.0f, 0.0f, 0.0f);
     std::vector<Light> lights;
 
-    Light light(glm::vec3(4, 0, 1), lightCol);
-    Light lightT(glm::vec3(4, 0, 1), lightCol);
+    Light light(glm::vec3(5, 0, 1), glm::vec3(0.0f, 1.0f, 0.0f));
+    Light lightT(glm::vec3(-5, 0, -1), lightCol);
 
     lights.insert(lights.end(), light);
     lights.insert(lights.end(), lightT);
@@ -26,7 +26,11 @@ int main() {
     Cube cubeV(glm::vec3(2, -1, 6), lights);
 
     cube.SetTexture("../Objects/3D/Cube/container.jpg");
+    cubeD.SetTexture("../Objects/3D/Cube/container.jpg");
+    cubeV.SetTexture("../Objects/3D/Cube/container.jpg");
     cubeT.SetTexture("../Objects/3D/Cube/teams.jpg");
+    cubeG.SetTexture("../Objects/3D/Cube/teams.jpg");
+    cubeF.SetTexture("../Objects/3D/Cube/teams.jpg");
 
     cube.Rotate(45.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 
@@ -40,6 +44,7 @@ int main() {
     mainScene.Add(&cubeG);
     mainScene.Add(&cubeV);
     mainScene.Add(&light);
+    mainScene.Add(&lightT);
 
     glEnable(GL_DEPTH_TEST);
 

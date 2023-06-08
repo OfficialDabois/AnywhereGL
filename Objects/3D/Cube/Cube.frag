@@ -1,6 +1,6 @@
 #version 330 core
 
-float ambientConst = 0.2;
+float ambientConst = 0.1;
 
 in vec3 myNormal;
 in vec3 crntPos;
@@ -13,21 +13,22 @@ struct Light {
     vec3 Color;
 };
 
-uniform vec3 lightCol;
 uniform vec3 objectColour;
-uniform vec3 lightPos;
 uniform sampler2D textureLook;
 uniform Light lights[10];
 
 vec3 LightCalc() {
     vec3 norm = normalize(myNormal);
-    vec3 lightDir = normalize(lightPos - crntPos);
-    float diff = max(dot(norm, lightDir), 0.0);
+
 
     vec3 result;
 
     for (int i = 0; i < 10; i++)
+    {
+        vec3 lightDir = normalize(lights[i].Pos - crntPos);
+        float diff = max(dot(norm, lightDir), 0.0);
         result += (ambientConst + vec3(diff * lights[i].Color)) * objectColour;
+    }
 
     return result;
 }
