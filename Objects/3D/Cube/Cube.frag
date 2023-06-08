@@ -26,7 +26,5 @@ vec3 LightCalc() {
 void main() {
     vec3 calc = LightCalc();
 
-
-
     FragColor =  texture(textureLook, texCoord) * vec4(calc, 1.0);
 }

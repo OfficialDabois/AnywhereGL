@@ -1,18 +1,22 @@
 #include <glad/glad.h>
+#include <vector>
 #include "Scene/MainScene.h"
 #include "Objects/3D/Cube/Cube.h"
 #include "Objects/3D/Light/Light.h"
 #include "Util/Window.h"
 #include "Util/Camera.h"
-#include <vector>
 
 int main() {
     Window window = Init("Hello world", 1920, 1080);
 
-    glm::vec3 lightCol = glm::vec3(1.0f, 0.0f, 0.0f);
+    glm::vec3 lightCol = glm::vec3(0.0f, 1.0f, 0.0f);
     std::vector<Light> lights;
 
     Light light(glm::vec3(4, 0, 1), lightCol);
+    Light lightT(glm::vec3(4, 0, 1), lightCol);
+
+    lights.insert(lights.end(), light);
+    lights.insert(lights.end(), lightT);
 
     Cube cube(glm::vec3(0, 0, 0), lights);
     Cube cubeT(glm::vec3(5, 1, 5), lights);
@@ -23,7 +27,6 @@ int main() {
 
     cube.SetTexture("../Objects/3D/Cube/container.jpg");
     cubeT.SetTexture("../Objects/3D/Cube/teams.jpg");
-    cubeF.SetTexture("../Objects/3D/Cube/container.jpg");
 
     cube.Rotate(45.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 

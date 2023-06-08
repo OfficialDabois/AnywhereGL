@@ -11,7 +11,7 @@ public:
 
     void Use();
 
-    void Vec3Uniform(const char* name, glm::vec3 value);
+    void Vec3Uniform(const char* name, glm::vec3 value) const;
     void Mat4Uniform(const char* name, const glm::mat4& value)const;
     void CleanUp();
 };
