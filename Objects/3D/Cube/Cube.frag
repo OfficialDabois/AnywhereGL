@@ -8,17 +8,26 @@ in vec2 texCoord;
 
 out vec4 FragColor;
 
+struct Light {
+    vec3 Pos;
+    vec3 Color;
+};
+
 uniform vec3 lightCol;
 uniform vec3 objectColour;
 uniform vec3 lightPos;
 uniform sampler2D textureLook;
+uniform Light lights[10];
 
 vec3 LightCalc() {
     vec3 norm = normalize(myNormal);
     vec3 lightDir = normalize(lightPos - crntPos);
     float diff = max(dot(norm, lightDir), 0.0);
 
-    vec3 result = (ambientConst + vec3(diff * lightCol)) * objectColour;
+    vec3 result;
+
+    for (int i = 0; i < 10; i++)
+        result += (ambientConst + vec3(diff * lights[i].Color)) * objectColour;
 
     return result;
 }
