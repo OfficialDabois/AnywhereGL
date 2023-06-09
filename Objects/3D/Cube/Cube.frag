@@ -1,6 +1,6 @@
 #version 330 core
 
-float ambientConst = 0.1;
+float ambientConst = 0.01;
 
 in vec3 myNormal;
 in vec3 crntPos;

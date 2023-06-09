@@ -10,7 +10,8 @@
 
 class Cube : public IObject {
 public:
-    explicit Cube(glm::vec3 pos, std::vector<Light> lights);
+    explicit Cube(glm::vec3 pos, std::vector<Light*> lights);
+    Cube(Cube &cube);
     ~Cube();
 
     void SetCamera(glm::mat4 camUpdate) override;
@@ -30,7 +31,7 @@ private:
     glm::mat4 quModel = glm::mat4(1.0f);
 
     glm::vec3 objectColour;
-    std::vector<Light> lights;
+    std::vector<Light*> lights;
 
     static constexpr float cubeVertices[] = {
             -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f, 0.0f, 0.0f,

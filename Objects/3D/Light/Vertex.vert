@@ -10,7 +10,7 @@ out vec3 aCol;
 out vec3 myNormal;
 
 void main() {
-    gl_Position = mvp * vec4(aPos, 1.0);
     myNormal = aNormal;
     aCol = lCol;
+    gl_Position = mvp * vec4(aPos, 1.0);
 }

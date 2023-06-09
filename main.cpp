@@ -10,20 +10,22 @@ int main() {
     Window window = Init("Hello world", 1920, 1080);
 
     glm::vec3 lightCol = glm::vec3(1.0f, 0.0f, 0.0f);
-    std::vector<Light> lights;
+    std::vector<Light*> lighting;
 
-    Light light(glm::vec3(5, 0, 1), glm::vec3(0.0f, 1.0f, 0.0f));
-    Light lightT(glm::vec3(-5, 0, -1), lightCol);
+    Light lightd(glm::vec3(0, 0, -1), glm::vec3(0.0f, 1.0f, 0.0f));
+    Light light(glm::vec3(2, 0, -1), glm::vec3(0.0f, 0.0f, 1.0f));
+    Light lightT(glm::vec3(-2, 0, -1), glm::vec3(1.0f, 0.0f, 0.0f));
 
-    lights.insert(lights.end(), light);
-    lights.insert(lights.end(), lightT);
+    lighting.insert(lighting.cend(), &light);
+    lighting.insert(lighting.cend(), &lightT);
+    lighting.insert(lighting.cend(), &lightd);
 
-    Cube cube(glm::vec3(0, 0, 0), lights);
-    Cube cubeT(glm::vec3(5, 1, 5), lights);
-    Cube cubeD(glm::vec3(2, 2, 4), lights);
-    Cube cubeF(glm::vec3(1, 3, 7), lights);
-    Cube cubeG(glm::vec3(3, -1, 7), lights);
-    Cube cubeV(glm::vec3(2, -1, 6), lights);
+    Cube cube(glm::vec3(0, 0, 3), lighting);
+    Cube cubeT(glm::vec3(5, 1, 5), lighting);
+    Cube cubeD(glm::vec3(2, 2, 4), lighting);
+    Cube cubeF(glm::vec3(1, 3, 7), lighting);
+    Cube cubeG(glm::vec3(3, -1, 7), lighting);
+    Cube cubeV(glm::vec3(2, -1, 6), lighting);
 
     cube.SetTexture("../Objects/3D/Cube/container.jpg");
     cubeD.SetTexture("../Objects/3D/Cube/container.jpg");
@@ -38,11 +40,12 @@ int main() {
     MainScene mainScene(&camera);
     
     mainScene.Add(&cube);
-    mainScene.Add(&cubeT);
     mainScene.Add(&cubeD);
-    mainScene.Add(&cubeF);
-    mainScene.Add(&cubeG);
     mainScene.Add(&cubeV);
+    mainScene.Add(&cubeT);
+    mainScene.Add(&cubeG);
+    mainScene.Add(&cubeF);
+    mainScene.Add(&lightd);
     mainScene.Add(&light);
     mainScene.Add(&lightT);
 

@@ -6,7 +6,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-Cube::Cube(glm::vec3 pos, std::vector<Light> lights) : shader("../Objects/3D/Cube/Cube.vert", "../Objects/3D/Cube/Cube.frag") {
+Cube::Cube(glm::vec3 pos, std::vector<Light*> lights) : shader("../Objects/3D/Cube/Cube.vert", "../Objects/3D/Cube/Cube.frag") {
     glGenBuffers(1, &VBO);
     glGenVertexArrays(1, &VAO);
 
@@ -26,6 +26,13 @@ Cube::Cube(glm::vec3 pos, std::vector<Light> lights) : shader("../Objects/3D/Cub
 
     quModel = glm::translate(quModel, pos);
     Cube::lights = std::move(lights);
+}
+
+Cube::Cube(Cube &cube) : shader("../Objects/3D/Cube/Cube.vert", "../Objects/3D/Cube/Cube.frag") {
+    VAO = cube.VAO;
+    VBO = cube.VBO;
+
+    lights = std::move(cube.lights);
 }
 
 Cube::~Cube() {
@@ -88,8 +95,8 @@ void Cube::Render() {
         std::string valueCol = "lights[" + std::to_string(i) + "].Color";
         std::string valuePos = "lights[" + std::to_string(i) + "].Pos";
 
-        shader.Vec3Uniform(valueCol.c_str(), Cube::lights[i].colour);
-        shader.Vec3Uniform(valuePos.c_str(), Cube::lights[i].pos);
+        shader.Vec3Uniform(valueCol.c_str(), Cube::lights[i]->colour);
+        shader.Vec3Uniform(valuePos.c_str(), Cube::lights[i]->pos);
     }
 
     shader.Mat4Uniform("vp", vp);
