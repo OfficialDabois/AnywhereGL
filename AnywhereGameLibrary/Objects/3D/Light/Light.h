@@ -4,11 +4,13 @@
 #include "../../Interface/IObject.h"
 #include <../Shader/Shader.h>
 #include <../glm/glm.hpp>
+#include "../Scene/MainScene.h"
 
 
 class Light : public IObject {
 public:
-    explicit Light(glm::vec3 pos, glm::vec3 colour);
+    explicit Light(glm::vec3 pos, glm::vec3 colour, MainScene* scene);
+    Light(Light &light);
     ~Light();
 
     void SetCamera(glm::mat4 camUpdate) override;

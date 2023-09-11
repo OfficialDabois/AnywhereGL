@@ -7,10 +7,11 @@
 #include "Shader/Shader.h"
 #include <vector>
 #include "../Light/Light.h"
+#include "../Scene/MainScene.h"
 
 class Cube : public IObject {
 public:
-    explicit Cube(glm::vec3 pos, std::vector<Light*> lights);
+    explicit Cube(glm::vec3 pos, std::vector<Light*> lights, MainScene* scene);
     Cube(Cube &cube);
     ~Cube();
 

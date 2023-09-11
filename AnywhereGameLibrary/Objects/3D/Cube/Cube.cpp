@@ -6,7 +6,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-Cube::Cube(glm::vec3 pos, std::vector<Light*> lights) : shader("Objects/3D/Cube/Cube.vert", "Objects/3D/Cube/Cube.frag") {
+Cube::Cube(glm::vec3 pos, std::vector<Light*> lights, MainScene* scene) : shader("Objects/3D/Cube/Cube.vert", "Objects/3D/Cube/Cube.frag") {
     glGenBuffers(1, &VBO);
     glGenVertexArrays(1, &VAO);
 
@@ -26,6 +26,7 @@ Cube::Cube(glm::vec3 pos, std::vector<Light*> lights) : shader("Objects/3D/Cube/
 
     quModel = glm::translate(quModel, pos);
     Cube::lights = std::move(lights);
+    scene->Add(this);
 }
 
 Cube::Cube(Cube &cube) : shader("Objects/3D/Cube/Cube.vert", "Objects/3D/Cube/Cube.frag") {

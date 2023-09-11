@@ -76,7 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\tarar\source\repos\AnywhereGameLibrary\AnywhereGameLibrary\imgui;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)/imgui;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -91,7 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\tarar\source\repos\AnywhereGameLibrary\AnywhereGameLibrary\imgui;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)/imgui;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -106,7 +106,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\tarar\source\repos\AnywhereGameLibrary\AnywhereGameLibrary\imgui;C:\Users\tarar\source\repos\AnywhereGameLibrary\AnywhereGameLibrary\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)/imgui;C:\Users\tarar\source\repos\AnywhereGameLibrary\AnywhereGameLibrary\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -124,7 +124,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\tarar\source\repos\AnywhereGameLibrary\AnywhereGameLibrary\imgui;C:\Users\tarar\source\repos\AnywhereGameLibrary\AnywhereGameLibrary\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)/imgui;C:\Users\tarar\source\repos\AnywhereGameLibrary\AnywhereGameLibrary\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -172,6 +172,7 @@
     <ClInclude Include="Objects\3D\Cube\Cube.h" />
     <ClInclude Include="Objects\3D\Light\Light.h" />
     <ClInclude Include="Physics\AGLPhys.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene\MainScene.h" />
     <ClInclude Include="Util\Camera.h" />
     <ClInclude Include="Util\Window.h" />

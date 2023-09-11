@@ -16,8 +16,6 @@ public:
     void Remove(IObject* object);
     void Render();
 
-    GLFWwindow* window;
-
     std::vector<IObject*> objects;
 
     glm::mat4 camPers = glm::mat4(1.0f);

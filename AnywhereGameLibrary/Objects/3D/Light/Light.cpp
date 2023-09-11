@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include "Light.h"
 
-Light::Light(glm::vec3 pos, glm::vec3 colour) : shader("Objects/3D/Light/Vertex.vert", "Objects/3D/Light/Fragment.frag"){
+Light::Light(glm::vec3 pos, glm::vec3 colour, MainScene* scene) : shader("Objects/3D/Light/Vertex.vert", "Objects/3D/Light/Fragment.frag"){
     glGenBuffers(1, &VBO);
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
@@ -19,8 +19,17 @@ Light::Light(glm::vec3 pos, glm::vec3 colour) : shader("Objects/3D/Light/Vertex.
 
     quModel = glm::translate(quModel, pos);
 
-    Light::pos = pos;
-    Light::colour = colour;
+    this->pos = pos;
+    this->colour = colour;
+    scene->Add(this);
+}
+
+Light::Light(Light& light) : shader("Objects/3D/Cube/Cube.vert", "Objects/3D/Cube/Cube.frag") {
+    VAO = light.VAO;
+    VBO = light.VBO;
+
+    this->pos = pos;
+    this->colour = colour;
 }
 
 Light::~Light() {
