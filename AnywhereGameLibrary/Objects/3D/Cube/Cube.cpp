@@ -1,12 +1,13 @@
 #include "glad/glad.h"
 #include "Cube.h"
+#include "IObject.h"
 #include <utility>
 #include <string>
 #include "glm/gtc/matrix_transform.hpp"
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-Cube::Cube(glm::vec3 pos, std::vector<Light*> lights, MainScene* scene) : shader("Objects/3D/Cube/Cube.vert", "Objects/3D/Cube/Cube.frag") {
+Cube::Cube(glm::vec3 pos, MainScene* scene) : shader("Objects/3D/Cube/Cube.vert", "Objects/3D/Cube/Cube.frag") {
     glGenBuffers(1, &VBO);
     glGenVertexArrays(1, &VAO);
 
@@ -25,7 +26,6 @@ Cube::Cube(glm::vec3 pos, std::vector<Light*> lights, MainScene* scene) : shader
     glEnableVertexAttribArray(2);
 
     quModel = glm::translate(quModel, pos);
-    Cube::lights = std::move(lights);
     scene->Add(this);
 }
 
@@ -40,6 +40,10 @@ Cube::~Cube() {
     glDeleteBuffers(1, &VBO);
     glDeleteVertexArrays(1, &VAO);
     glDeleteProgram(shader.ID);
+}
+
+void Cube::SetLight(Light* light) {
+    Cube::lights.push_back(light);
 }
 
 void Cube::SetCamera(glm::mat4 camUpdate) {

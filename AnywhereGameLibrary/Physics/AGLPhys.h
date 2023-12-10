@@ -16,6 +16,16 @@ struct vector3 {
     float y;
     float z;
 
+    float modVec() {
+        return sqrt((this->x * this->x) + (this->y * this->y) + (this->z * this->z));
+    }
+
+    vector3 normalize() {
+        float modded = modVec();
+
+        return vector3(this->x / modded, this->y / modded, this->z / modded);
+    }
+
     vector3 operator+= (const float& val) {
         vector3::x += val;
         vector3::y += val;
@@ -34,15 +44,13 @@ struct vector3 {
         vector3::z / val;
     }
 
-    vector3 operator* (const float& val) {
-        vector3::x * val;
-        vector3::y * val;
-        vector3::z * val;
+    float operator* (const vector3& val) {
+        return ((vector3::x * val.x) + (vector3::y * val.y) + (vector3::z * val.z));
     }
 };
 
 struct Object {
-    Cube* c_object;
+    IObject* object;
     vector3 Position;
     vector3 Velocity;
     vector3 Force;
@@ -74,7 +82,7 @@ public:
         if (itr == objects.end()) return;
         objects.erase(itr);
     }
-
+    /*
     void Step(float dt) {
         for (Object* obj : objects) {
             obj->Force.operator+=(obj->Mass * gravity);
@@ -86,6 +94,7 @@ public:
 
         }
     }
+    */
 };
 
 #endif

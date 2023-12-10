@@ -5,28 +5,31 @@ int main() {
     std::cout << "This product is only available for windows at the moment" << std::endl;
     return 0;
 #endif
-    Window window = Init("Hello world", 1920, 1080);
+    Window window = Init("Game", 1920, 1080);
+
+    std::chrono::steady_clock::time_point lastUpdate;
+    float deltaTime;
+
+    auto now = std::chrono::steady_clock::now();
+    deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(now - lastUpdate).count() / 1000000.0f;
+    lastUpdate = now;
 
     glm::vec3 lightCol = glm::vec3(1.0f, 0.0f, 0.0f);
-    std::vector<Light*> lighting;
 
     Camera camera(glm::vec3(0, 5, -10), glm::vec3(0, 0, 0), glm::radians(45.0f));
     MainScene mainScene(&camera);
+
+    Cube cube(glm::vec3(0, 0, 3), &mainScene);
+    Cube cubeT(glm::vec3(5, 1, 5), &mainScene);
+    Cube cubeD(glm::vec3(2, 2, 4), &mainScene);
+    Cube cubeF(glm::vec3(1, 3, 7), &mainScene);
+    Cube cubeG(glm::vec3(3, -1, 7), &mainScene);
+    Cube cubeV(glm::vec3(2, -1, 6), &mainScene);
 
     Light lightT(glm::vec3(-1, 0, -1), lightCol, &mainScene);
     Light light(glm::vec3(3, 0, -1), lightCol, &mainScene);
 
     float* lightColour[] = { &lightT.colour.x, &lightT.colour.y, &lightT.colour.z };
-
-    lighting.insert(lighting.cend(), &lightT);
-    lighting.insert(lighting.cend(), &light);
-
-    Cube cube(glm::vec3(0, 0, 3), lighting, &mainScene);
-    Cube cubeT(glm::vec3(5, 1, 5), lighting, &mainScene);
-    Cube cubeD(glm::vec3(2, 2, 4), lighting, &mainScene);
-    Cube cubeF(glm::vec3(1, 3, 7), lighting, &mainScene);
-    Cube cubeG(glm::vec3(3, -1, 7), lighting, &mainScene);
-    Cube cubeV(glm::vec3(2, -1, 6), lighting, &mainScene);
 
     cube.SetTexture("Objects/3D/Cube/container.jpg");
     cubeD.SetTexture("Objects/3D/Cube/container.jpg");
@@ -49,7 +52,10 @@ int main() {
 
     float rotSpeed = 1.0f;
 
-    while (!ShouldWindowClose(window)) {
+    std::cout << vector3(3, 1, 2).modVec() << std::endl;
+
+    // runs every frame
+   while (!ShouldWindowClose(window)) {
         SetColour(glm::vec3(0.5961f, 0.5961f, 0.5961f));
 
         ImGui_ImplOpenGL3_NewFrame();
@@ -60,10 +66,9 @@ int main() {
 
         mainScene.Render();
 
-
         ImGui::Begin("Window test");
         ImGui::Text("Hello there this is a test");
-        ImGui::SliderFloat("Rot speed", &rotSpeed, 1.0f, 10.0f);
+        ImGui::SliderFloat("Rot speed", &rotSpeed, 1.0f, 100.0f);
         ImGui::ColorEdit3("Light colour", *lightColour);
         ImGui::End();
 

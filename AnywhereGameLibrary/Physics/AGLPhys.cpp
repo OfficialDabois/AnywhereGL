@@ -1,4 +1,3 @@
-#include <iostream>
 #include "AGLPhys.h"
 
 vector3 ToVector3(glm::vec3 input) {

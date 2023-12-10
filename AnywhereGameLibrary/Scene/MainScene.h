@@ -3,11 +3,15 @@
 
 #include <vector>
 #include <GLFW/glfw3.h>
-#include "../Interface/IObject.h"
-#include "../Util/Camera.h"
+#include "../AGL.h"
 
 
 class MainScene {
+    std::vector<IObject*> objects;
+    std::vector<Object*> rigidBodies;
+
+    void UpdateLighting(IObject* object);
+
 public:
     explicit MainScene(Camera* camera);
     ~MainScene() = default;
@@ -15,8 +19,7 @@ public:
     void Add(IObject* object);
     void Remove(IObject* object);
     void Render();
-
-    std::vector<IObject*> objects;
+    void PhysUpdate(float dt);
 
     glm::mat4 camPers = glm::mat4(1.0f);
     glm::mat4 camView = glm::mat4(1.0f);

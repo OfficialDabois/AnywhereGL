@@ -21,6 +21,7 @@ Light::Light(glm::vec3 pos, glm::vec3 colour, MainScene* scene) : shader("Object
 
     this->pos = pos;
     this->colour = colour;
+    isLight = true;
     scene->Add(this);
 }
 

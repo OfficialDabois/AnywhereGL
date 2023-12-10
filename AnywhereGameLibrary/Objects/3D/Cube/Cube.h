@@ -11,7 +11,7 @@
 
 class Cube : public IObject {
 public:
-    explicit Cube(glm::vec3 pos, std::vector<Light*> lights, MainScene* scene);
+    explicit Cube(glm::vec3 pos, MainScene* scene);
     Cube(Cube &cube);
     ~Cube();
 
@@ -21,6 +21,7 @@ public:
     void SetTexture(const char* fileLoc);
     void Scale(glm::vec3 scale);
     void Rotate(float angle, glm::vec3 axis);
+    void SetLight(Light* light);
 
 private:
     Shader shader;
